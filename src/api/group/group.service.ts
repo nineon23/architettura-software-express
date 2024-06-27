@@ -4,11 +4,22 @@ import {AddGroupDTO} from "./group.dto";
 
 export class GroupService{
 
-    async createGroup(groupName: string): Promise<GroupEntity> {
+    async createGroup(groupName: string){
 
+        try{
 
-        const newGroup = GroupModel.create(groupName);
-        return newGroup;
+            const newGroup = GroupModel.create(groupName);
+            return newGroup;
+        }
+        catch (exc){
+            console.log(exc)
+        }
+
+    }
+
+    async getGroups(): Promise<GroupEntity[]> {
+        const groups = GroupModel.find().exec();
+        return groups;
     }
 
 }
