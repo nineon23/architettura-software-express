@@ -1,0 +1,111 @@
+{
+  "id": "prodotto_customizzato",
+  "steps": [
+    {
+      "id": "order_request_arrived"
+    },
+    {
+      "id": "generate_task",
+      "config": {
+        "task": {
+          "detail": "Design",
+          "for": "production"
+        }
+      }
+    },
+    {
+      "id": "task_completed",
+      "config": {
+        "task": {
+          "detail": "Design",
+          "of": "production"
+        }
+      }
+    },
+    {
+      "id": "generate_task",
+      "config": {
+        "task": {
+          "detail": "Evaluate cost",
+          "for": "costs"
+        }
+      }
+    },
+    {
+      "id": "task_completed",
+      "config": {
+        "task": {
+          "detail": "Evaluate cost",
+          "of": "costs"
+        }
+      }
+    },
+    {
+      "id": "generate_task",
+      "config": {
+        "task": {
+          "detail": "Calculate final price",
+          "for": "commercial"
+        }
+      }
+    },
+    {
+      "id": "task_completed",
+      "config": {
+        "task": {
+          "detail": "Calculate final price",
+          "of": "commercial"
+        }
+      }
+    },
+    {
+      "id": "check_material_availability",
+      "response": {
+        "true": {
+          "steps": [
+            {
+              "id": "next"
+            }
+          ]
+        },
+        "false": {
+          "steps": [
+            {
+              "id": "place_order_for_material"
+            },
+            {
+              "id": "material_added"
+            },
+            {
+              "id": "next"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "start_production",
+      "config": {
+        "notification": {
+          "to": "commercial"
+        }
+      }
+    },
+    {
+      "id": "finish_production",
+      "steps": [
+        {
+          "id": "next"
+        }
+      ]
+    },
+    {
+      "id": "add_order_to_warehouse",
+      "config": {
+        "notification": {
+          "to": ["commercial", "client"]
+        }
+      }
+    }
+  ]
+}
