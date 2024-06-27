@@ -3,7 +3,7 @@ import {EmployeeEntity} from "./employee.entity";
 
 export const employeeSchema = new mongoose.Schema<EmployeeEntity>({
      name: String,
-     groupId: String
+     groupId: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
     });
 
 employeeSchema.set('toJSON', {

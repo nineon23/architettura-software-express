@@ -7,7 +7,7 @@ export class AddGroupDTO{
 
     @IsArray()
     @IsOptional()
-    members: string[];
+    members: SingleMemberDTO[];
 
 }
 

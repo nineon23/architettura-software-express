@@ -14,12 +14,14 @@ export const addGroup = async(
         const members = req.body.members;
 
         const newGroup = await GroupService.createGroup(req.body.groupName);
+        const group = await GroupService.getByName(req.body.groupName)
 
         for (const member of members) {
-            await EmployeeService.createEmployee(newGroup.id!, member);
+            const name = member.name;
+            await EmployeeService.createEmployee( name, group.id! );
         }
 
-        res.json(newGroup);
+        res.json(group);
     } catch (error) {
         next(error);
     }
