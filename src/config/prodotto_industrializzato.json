@@ -1,0 +1,66 @@
+{
+  "id": "prodotto_industrializzato",
+  "steps": [
+    {
+      "id": "order_request_arrived"
+    },
+    {
+      "id": "order_validated"
+    },
+    {
+      "id": "order_estimate_sent_to_client"
+    },
+    {
+      "id": "order_confirmation_received"
+    },
+    {
+      "id": "check_material_availability",
+      "response": {
+        "true": {
+          "steps": [
+            {
+              "id": "next"
+            }
+          ]
+        },
+        "false": {
+          "steps": [
+            {
+              "id": "place_order_for_material"
+            },
+            {
+              "id": "material_added"
+            },
+            {
+              "id": "next"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "start_production",
+      "config": {
+        "notification": {
+          "to": "commercial"
+        }
+      }
+    },
+    {
+      "id": "finish_production",
+      "steps": [
+        {
+          "id": "next"
+        }
+      ]
+    },
+    {
+      "id": "add_order_to_warehouse",
+      "config": {
+        "notification": {
+          "to": ["commercial", "client"]
+        }
+      }
+    }
+  ]
+}
